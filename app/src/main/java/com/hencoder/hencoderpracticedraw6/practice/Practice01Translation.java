@@ -34,6 +34,8 @@ public class Practice01Translation extends RelativeLayout {
         super(context, attrs, defStyleAttr);
     }
 
+    int state = 0;
+
     @Override
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
@@ -44,11 +46,34 @@ public class Practice01Translation extends RelativeLayout {
             // 给音乐图标加上合适的阴影
             imageView.setOutlineProvider(new MusicOutlineProvider());
         }
-
         animateBt.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(final View v) {
                 // TODO 在这里处理点击事件，通过 View.animate().translationX/Y/Z() 来让 View 平移
+
+                switch (state % 6) {
+                    case 0:
+                        imageView.animate().translationX(200);
+                        break;
+                    case 1:
+                        imageView.animate().translationX(0);
+                        break;
+                    case 2:
+                        imageView.animate().translationY(200);
+                        break;
+                    case 3:
+                        imageView.animate().translationY(0);
+                        break;
+                    case 4:
+                        imageView.animate().translationZ(200);
+                        break;
+                    case 5:
+                        imageView.animate().translationZ(0);
+                        break;
+                    default:
+                        break;
+                }
+                state++;
             }
         });
     }
